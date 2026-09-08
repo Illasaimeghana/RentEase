@@ -25,7 +25,7 @@ function Admin() {
 
   const loadProperties = () => {
 
-    fetch("http://localhost/rentease/backend/properties.php")
+    fetch("https://renteasey.infinityfreeapp.com/backend/properties.php")
 
       .then((response) => response.json())
 
@@ -57,7 +57,7 @@ function Admin() {
 
     e.preventDefault();
 
-    fetch("http://localhost/rentease/backend/admin_login.php", {
+    fetch("https://renteasey.infinityfreeapp.com/backend/admin_login.php", {
 
       method: "POST",
 
@@ -138,7 +138,7 @@ function Admin() {
     formData.append("image", imageFile);
 
     const response = await fetch(
-      "http://localhost/rentease/backend/upload_image.php",
+      "https://renteasey.infinityfreeapp.com/backend/upload_image.php",
       {
         method: "POST",
         body: formData,
@@ -181,7 +181,7 @@ function Admin() {
     }
 
     fetch(
-      "http://localhost/rentease/backend/add_property.php",
+      "https://renteasey.infinityfreeapp.com/backend/add_property.php",
       {
         method: "POST",
 
@@ -272,7 +272,7 @@ function Admin() {
     }
 
     fetch(
-      "http://localhost/rentease/backend/update_property.php",
+      "https://renteasey.infinityfreeapp.com/backend/update_property.php",
       {
         method: "POST",
 
@@ -333,7 +333,7 @@ function Admin() {
     }
 
     fetch(
-      "http://localhost/rentease/backend/delete_property.php",
+      "https://renteasey.infinityfreeapp.com/backend/delete_property.php",
       {
         method: "POST",
 
@@ -592,11 +592,10 @@ function Admin() {
               key={property.Id}
             >
 
-              <img
-                src={`http://localhost/rentease/images/${property.Image}`}
-                alt={property.Title}
-              />
-
+             <img
+  src={`https://renteasey.infinityfreeapp.com/images/${property.Image}`}
+  alt={property.Title}
+/>
 
               <div>
 
