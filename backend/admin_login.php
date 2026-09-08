@@ -13,37 +13,50 @@ include "db.php";
 
 $data = json_decode(file_get_contents("php://input"), true);
 
-$user_id = $data["user_id"] ?? "";
-$property_id = $data["property_id"] ?? "";
-$booking_date = $data["booking_date"] ?? "";
+$email = $data["email"] ?? "";
+$password = $data["password"] ?? "";
 
-if ($user_id === "" || $property_id === "" || $booking_date === "") {
+if ($email === "" || $password === "") {
     echo json_encode([
         "success" => false,
-        "message" => "All booking details are required"
+        "message" => "Email and password are required"
     ]);
     exit;
 }
 
-$status = "Pending";
+$email = mysqli_real_escape_string($conn, $email);
+$password = mysqli_real_escape_string($conn, $password);
 
-$sql = "INSERT INTO bookings
-        (user_id, property_id, booking_date, status)
-        VALUES
-        ('$user_id', '$property_id', '$booking_date', '$status')";
+$sql = "SELECT id, email
+        FROM admins
+        WHERE email = '$email'
+        AND password = '$password'";
 
-if (mysqli_query($conn, $sql)) {
+$result = mysqli_query($conn, $sql);
+
+if (!$result) {
+    echo json_encode([
+        "success" => false,
+        "message" => "Database error: " . mysqli_error($conn)
+    ]);
+    exit;
+}
+
+if (mysqli_num_rows($result) > 0) {
+
+    $admin = mysqli_fetch_assoc($result);
 
     echo json_encode([
         "success" => true,
-        "message" => "Booking created successfully"
+        "message" => "Admin login successful",
+        "admin" => $admin
     ]);
 
 } else {
 
     echo json_encode([
         "success" => false,
-        "message" => "Booking failed: " . mysqli_error($conn)
+        "message" => "Invalid admin credentials"
     ]);
 }
 
