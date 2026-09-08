@@ -1,6 +1,6 @@
 <?php
 
-header("Access-Control-Allow-Origin: http://localhost:5173");
+header("Access-Control-Allow-Origin: https://rent-ease-eight-phi.vercel.app");
 header("Content-Type: application/json");
 
 include "db.php";
