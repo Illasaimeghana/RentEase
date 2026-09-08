@@ -52,7 +52,7 @@ function App() {
   };
 
 
-  // LOAD USER
+  // LOAD USER FROM LOCAL STORAGE
 
   useEffect(() => {
 
@@ -170,6 +170,7 @@ function App() {
       .catch((error) => {
 
         console.log("Login Error:", error);
+
         alert("Login failed");
 
       });
@@ -204,9 +205,7 @@ function App() {
 
         if (data.success) {
 
-          alert(
-            "Registration successful! Please login."
-          );
+          alert("Registration successful! Please login.");
 
           setShowRegister(false);
           setShowLogin(true);
@@ -225,6 +224,7 @@ function App() {
       .catch((error) => {
 
         console.log("Register Error:", error);
+
         alert("Registration failed");
 
       });
@@ -267,7 +267,7 @@ function App() {
   };
 
 
-  // BOOK PROPERTY
+  // BOOKING
 
   const handleBooking = (e) => {
 
@@ -287,11 +287,9 @@ function App() {
         },
 
         body: JSON.stringify({
-
           user_id: user.id,
           property_id: selectedProperty.Id,
           booking_date: bookingDate,
-
         }),
 
       }
@@ -319,6 +317,7 @@ function App() {
       .catch((error) => {
 
         console.log("Booking Error:", error);
+
         alert("Booking failed");
 
       });
@@ -370,7 +369,6 @@ function App() {
         body: JSON.stringify({
           booking_id: bookingId,
         }),
-
       }
     )
       .then((response) => response.json())
@@ -417,25 +415,17 @@ function App() {
       let priceMatch = true;
 
       if (priceFilter === "Under10000") {
-
-        priceMatch =
-          Number(property.Price) < 10000;
-
+        priceMatch = Number(property.Price) < 10000;
       }
 
       if (priceFilter === "10000to20000") {
-
         priceMatch =
           Number(property.Price) >= 10000 &&
           Number(property.Price) <= 20000;
-
       }
 
       if (priceFilter === "Above20000") {
-
-        priceMatch =
-          Number(property.Price) > 20000;
-
+        priceMatch = Number(property.Price) > 20000;
       }
 
       return (
@@ -486,17 +476,14 @@ function App() {
           </button>
 
           {isLoggedIn && (
-
             <button onClick={handleMyBookings}>
               My Bookings
             </button>
-
           )}
 
           {!isLoggedIn ? (
 
             <>
-
               <button
                 onClick={() => {
                   setShowLogin(true);
@@ -514,13 +501,11 @@ function App() {
               >
                 Register
               </button>
-
             </>
 
           ) : (
 
             <>
-
               <span className="welcome-text">
                 Welcome, {user.name}
               </span>
@@ -528,7 +513,6 @@ function App() {
               <button onClick={handleLogout}>
                 Logout
               </button>
-
             </>
 
           )}
@@ -606,7 +590,6 @@ function App() {
 
           </div>
 
-
           <div className="feature-card">
 
             <div className="feature-icon">
@@ -624,7 +607,6 @@ function App() {
 
           </div>
 
-
           <div className="feature-card">
 
             <div className="feature-icon">
@@ -641,7 +623,6 @@ function App() {
             </p>
 
           </div>
-
 
           <div className="feature-card">
 
@@ -864,7 +845,6 @@ function App() {
               >
                 Register
               </button>
-
             </p>
 
           </div>
@@ -945,7 +925,6 @@ function App() {
               >
                 Login
               </button>
-
             </p>
 
           </div>
@@ -1021,7 +1000,7 @@ function App() {
       )}
 
 
-      {/* MY BOOKINGS */}
+      {/* MY BOOKINGS MODAL */}
 
       {showMyBookings && (
 
@@ -1110,6 +1089,327 @@ function App() {
         </div>
 
       )}
+
+
+      {/* REVIEWS */}
+
+      <section className="reviews-section">
+
+        <h2>
+          What Our Users Say
+        </h2>
+
+        <p className="reviews-subtitle">
+          A simple and convenient way to find your next rental home.
+        </p>
+
+        <div className="reviews-container">
+
+          <div className="review-card">
+
+            <div className="stars">
+              ★★★★★
+            </div>
+
+            <p>
+              "RentEase made it really easy for me to
+              find a suitable apartment. The booking
+              process was simple and quick."
+            </p>
+
+            <h4>
+              — Rahul
+            </h4>
+
+          </div>
+
+
+          <div className="review-card">
+
+            <div className="stars">
+              ★★★★★
+            </div>
+
+            <p>
+              "I liked the property search and filters.
+              It helped me find properties within my
+              preferred budget."
+            </p>
+
+            <h4>
+              — Priya
+            </h4>
+
+          </div>
+
+
+          <div className="review-card">
+
+            <div className="stars">
+              ★★★★★
+            </div>
+
+            <p>
+              "The booking and My Bookings features
+              are very easy to use. Overall a smooth
+              rental experience."
+            </p>
+
+            <h4>
+              — Arjun
+            </h4>
+
+          </div>
+
+        </div>
+
+      </section>
+
+
+      {/* CONTACT */}
+
+      <section className="contact-section">
+
+        <div className="contact-content">
+
+          <div className="contact-info">
+
+            <h2>
+              Get in Touch
+            </h2>
+
+            <p>
+              Have questions about a property or your
+              booking? We're here to help.
+            </p>
+
+
+            <div className="contact-item">
+
+              <span>
+                📧
+              </span>
+
+              <div>
+
+                <strong>
+                  Email
+                </strong>
+
+                <p>
+                  support@rentease.com
+                </p>
+
+              </div>
+
+            </div>
+
+
+            <div className="contact-item">
+
+              <span>
+                📞
+              </span>
+
+              <div>
+
+                <strong>
+                  Phone
+                </strong>
+
+                <p>
+                  +91 90000 00000
+                </p>
+
+              </div>
+
+            </div>
+
+
+            <div className="contact-item">
+
+              <span>
+                📍
+              </span>
+
+              <div>
+
+                <strong>
+                  Location
+                </strong>
+
+                <p>
+                  Hyderabad, India
+                </p>
+
+              </div>
+
+            </div>
+
+          </div>
+
+
+          <div className="contact-box">
+
+            <h3>
+              Need Help?
+            </h3>
+
+            <p>
+              Our support team can help you with
+              property information, bookings and
+              general queries.
+            </p>
+
+            <button
+              onClick={() => {
+                window.location.href =
+                  "mailto:support@rentease.com";
+              }}
+            >
+              Contact Support
+            </button>
+
+          </div>
+
+        </div>
+
+      </section>
+
+
+      {/* FOOTER */}
+
+      <footer className="footer">
+
+        <div className="footer-container">
+
+
+          <div className="footer-brand">
+
+            <h2>
+              RentEase
+            </h2>
+
+            <p>
+              Find comfortable and affordable rental
+              properties with ease.
+            </p>
+
+          </div>
+
+
+          <div className="footer-column">
+
+            <h3>
+              Quick Links
+            </h3>
+
+            <button
+              onClick={() => {
+                window.scrollTo({
+                  top: 0,
+                  behavior: "smooth"
+                });
+              }}
+            >
+              Home
+            </button>
+
+            <button
+              onClick={() => {
+                document
+                  .getElementById(
+                    "properties-section"
+                  )
+                  ?.scrollIntoView({
+                    behavior: "smooth"
+                  });
+              }}
+            >
+              Properties
+            </button>
+
+            <button
+              onClick={handleMyBookings}
+            >
+              My Bookings
+            </button>
+
+          </div>
+
+
+          <div className="footer-column">
+
+            <h3>
+              Support
+            </h3>
+
+            <button
+              onClick={() => {
+                window.location.href =
+                  "mailto:support@rentease.com";
+              }}
+            >
+              Contact Us
+            </button>
+
+            <button
+              onClick={() => {
+                alert(
+                  "For help with properties and bookings, contact support@rentease.com"
+                );
+              }}
+            >
+              Help & Support
+            </button>
+
+            <button
+              onClick={() => {
+                alert(
+                  "RentEase Privacy Policy: Your account information is used only for providing rental services."
+                );
+              }}
+            >
+              Privacy Policy
+            </button>
+
+          </div>
+
+
+          <div className="footer-column">
+
+            <h3>
+              RentEase
+            </h3>
+
+            <p>
+              🏠 Easy Property Search
+            </p>
+
+            <p>
+              📅 Simple Booking
+            </p>
+
+            <p>
+              📋 Booking Management
+            </p>
+
+          </div>
+
+
+        </div>
+
+
+        <div className="footer-bottom">
+
+          <p>
+            © 2026 RentEase. All rights reserved.
+          </p>
+
+        </div>
+
+      </footer>
+
 
     </div>
 
